@@ -10,10 +10,12 @@ import org.jfree.ui.ApplicationFrame;
 
 public class HistogramDisplay<T> extends ApplicationFrame{
     private final Histogram<T> histogram;
+    private final String nameXAxis;
 
-    public HistogramDisplay(Histogram<T> histogram) {
+    public HistogramDisplay(Histogram<T> histogram, String nameXAxis) {
         super("Histograma");
         this.histogram = histogram;
+        this.nameXAxis = nameXAxis;
         setContentPane(createPane());
         pack();
     }
@@ -27,8 +29,8 @@ public class HistogramDisplay<T> extends ApplicationFrame{
     private JFreeChart createChart(DefaultCategoryDataset dataset) {
         JFreeChart chart = ChartFactory.createBarChart(
                 "Histograma de dominios",
-                "DOMINIOS",
-                "Nº EMAIL",
+                nameXAxis,
+                "NUMERO",
                 dataset,
                 PlotOrientation.VERTICAL,
                 true,
@@ -50,4 +52,6 @@ public class HistogramDisplay<T> extends ApplicationFrame{
         
         return dataset;
     }
+    
+    
 }
